@@ -1,0 +1,73 @@
+ /* -------------------- colors --------------------  */
+ :root {
+     --primary-bg-color: #171719;
+     --secondary-bg-color: #262628;
+     --button-bg-color: #fadb4c;
+     --button-font-color: #584712;
+     --primary-font-color: #4f4e51;
+     --white: #fbfafd;
+ }
+
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ ul li {
+     list-style: none;
+     margin-top: 1rem;
+ }
+
+ ul li a {
+    text-decoration: none;
+    color: var(--white);
+ }
+ ul li i {
+    margin-right: 1rem;
+ }
+ body {
+     display: grid;
+     grid-template-areas: "aside header" "aside main" "aside movies";
+     grid-template-columns: 15% 85%;
+     grid-template-rows: 10vh 50vh 40vh;
+ }
+
+
+ #header {
+     background-color: var(--secondary-bg-color);
+     grid-area: header;
+ }
+
+ /* -------------------- aside --------------------  */
+ #aside {
+     background-color: var(--primary-bg-color);
+     grid-area: aside;
+ }
+
+ .aside-items {
+    margin-top: 2rem;
+ }
+
+ .aside-items h2 {
+    padding-left: 1rem;
+ }
+
+.aside-items,
+ .aside-items ul li {
+     color: var(--white);
+ }
+
+ .aside-items ul li {
+    padding-left: 2rem;
+}
+
+ #main {
+     background-color: aliceblue;
+     grid-area: main;
+ }
+
+ #movies {
+     background-color: lightyellow;
+     grid-area: movies;
+ }
