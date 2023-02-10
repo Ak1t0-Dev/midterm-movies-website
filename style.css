@@ -1,4 +1,4 @@
- /* -------------------- colors --------------------  */
+ /* -------------------- base --------------------  */
  :root {
      --primary-bg-color: #171719;
      --secondary-bg-color: #262628;
@@ -14,29 +14,76 @@
      box-sizing: border-box;
  }
 
+ body {
+     font-family: "Titillium Web", sans-serif;
+     display: grid;
+     grid-template-areas: "aside header" "aside main";
+     grid-template-columns: 15% 85%;
+     grid-template-rows: 8vh 92vh;
+ }
+
  ul li {
      list-style: none;
-     margin-top: 1rem;
  }
 
  ul li a {
-    text-decoration: none;
-    color: var(--white);
- }
- ul li i {
-    margin-right: 1rem;
- }
- body {
-     display: grid;
-     grid-template-areas: "aside header" "aside main" "aside movies";
-     grid-template-columns: 15% 85%;
-     grid-template-rows: 10vh 50vh 40vh;
+     text-decoration: none;
+     color: var(--white);
  }
 
-
+ /* -------------------- header --------------------  */
  #header {
      background-color: var(--secondary-bg-color);
      grid-area: header;
+     display: flex;
+     justify-content: space-between;
+ }
+
+ .search-container {
+     margin: auto 1rem;
+ }
+
+ .search-input {
+     width: 400px;
+     padding: 0.5rem 1rem 0.5rem 2rem;
+ }
+
+ .search-btn {
+     padding: 0.5rem 1rem;
+ }
+
+ .search-input,
+ .search-btn {
+     border: none;
+ }
+
+ #genres {
+     width: 700px;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+ }
+
+ label {
+     margin-right: 5px;
+ }
+
+ label input {
+     display: none;
+ }
+
+ label span {
+     color: var(--white);
+     font-size: 0.5rem;
+     border: 1px solid var(--white);
+     border-radius: 1.5rem;
+     padding: 0.3rem 1rem;
+ }
+
+ label input:checked+span {
+     color: var(--secondary-bg-color);
+     background: var(--white);
+     border: 1px solid var(--white);
  }
 
  /* -------------------- aside --------------------  */
@@ -46,28 +93,71 @@
  }
 
  .aside-items {
-    margin-top: 2rem;
+     margin-top: 2rem;
  }
 
  .aside-items h2 {
-    padding-left: 1rem;
+     padding-left: 1rem;
  }
 
-.aside-items,
+ .aside-items,
  .aside-items ul li {
      color: var(--white);
  }
 
  .aside-items ul li {
-    padding-left: 2rem;
-}
+     margin-top: 1rem;
+     padding-left: 2rem;
+ }
 
+ .aside-items ul li i {
+     margin-right: 1rem;
+ }
+
+ /* -------------------- main --------------------  */
  #main {
      background-color: aliceblue;
      grid-area: main;
+     overflow: auto;
  }
 
  #movies {
      background-color: lightyellow;
-     grid-area: movies;
+ }
+
+ #movies img {
+     width: 150px;
+ }
+
+ .item {
+     border: 2px solid gray;
+     margin: 1rem;
+     padding: 1rem;
+     width: 400px;
+     display: grid;
+     grid-template-columns: 45% 55%;
+ }
+
+ .collected-data {
+ }
+
+ .item-genres {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+ }
+
+ .item-genre {
+     display: inline-block;
+     font-size: 0.8rem;
+     padding: 0.2rem 0.5rem;
+     margin-right: 0.3rem;
+     margin-bottom: 0.3rem;
+     border-radius: 2rem;
+     border: 1px solid var(--secondary-bg-color);
+ }
+
+ .sum {
+     padding: 1rem;
  }
