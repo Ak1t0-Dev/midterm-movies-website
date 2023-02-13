@@ -16,9 +16,23 @@
     <header id="header">
         <div class="search-container">
             <input class="search-input" type="text" placeholder="Please enter a movie title">
-            <button class="search-btn" onclick="fetchDataOnSearch()">Search</button>
+            <button class="search-btn">Search</button>
+            <div class="sort">
+                <span>sort:</span>
+                <input type="radio" name="sort" value="0" id="none" checked="checked">
+                <label for="none" class="sort-label">NONE</label>
+                <input type="radio" name="sort" value="1" id="trend">
+                <label for="trend" class="sort-label">TREND</label>
+                <input type="radio" name="sort" value="2" id="votes">
+                <label for="votes" class="sort-label">VOTES</label>
+                <input type="radio" name="sort" value="3" id="rating">
+                <label for="rating" class="sort-label">RATING</label>
+            </div>
         </div>
-        <div id="genres">
+        <div class="genres-filter">
+            <h3>filter by genres:</h3>
+            <div id="genres">
+            </div>
         </div>
     </header>
     <aside id="aside">
@@ -53,7 +67,7 @@
     </aside>
     <main id="main">
         <section id="main-item">
-        </section>        
+        </section>
         <section id="movies">
         </section>
     </main>
