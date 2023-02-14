@@ -63,6 +63,17 @@ const createUI = (data, search) => {
     let popularities = [];
     let sortValue = "";
 
+    // data shaping of popularity (create a ranking and add a new property to newItems)
+    results.forEach(({ popularity }) => {
+        popularities.push(popularity);
+    });
+
+    let sorted = popularities.slice().sort((a, b) => b - a);
+    let rankings = popularities.slice().map((i) => sorted.indexOf(i) + 1);
+
+    for (let i = 0; i < rankings.length; i++) {
+        results[i].rank = rankings[i];
+    }
 
     // sort data in the selected order
     // sortName.forEach((item) => {
@@ -106,18 +117,6 @@ const createUI = (data, search) => {
         item.title.toLowerCase().replace(/\s+/g,'').includes(search.toLowerCase().replace(/\s+/g,'')));
     } else {
         movieItems = checkedFilter;
-    }
-
-    // data shaping of popularity (create a ranking and add a new property to newItems)
-    movieItems.forEach(({ popularity }) => {
-        popularities.push(popularity);
-    });
-
-    let sorted = popularities.slice().sort((a, b) => b - a);
-    let rankings = popularities.slice().map((i) => sorted.indexOf(i) + 1);
-
-    for (let i = 0; i < rankings.length; i++) {
-        movieItems[i].rank = rankings[i];
     }
 
     // show movies total
