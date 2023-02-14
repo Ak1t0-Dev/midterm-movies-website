@@ -76,9 +76,6 @@ const createUI = (data, search) => {
     }
 
     // sort data in the selected order
-    // sortName.forEach((item) => {
-    //     if (item.checked) {let sortValue = sortName.value};
-    // })
     for (let i = 0; i < sortName.length; i++) {
         if (sortName[i].checked) {
             sortValue = sortName[i].value;
