@@ -7,6 +7,7 @@ const searchBtn = document.querySelector('.search-btn');
 const checkboxName = document.getElementsByName('checkbox');
 const sortName = document.getElementsByName('sort');
 const total = document.querySelector('#total');
+const textOverview = "OVERVIEW:";
 let checkedArray = [];
 let genresData = [];
 
@@ -136,7 +137,7 @@ const createUI = (data, search) => {
         const divOverview = document.createElement('div');
         divOverview.className = "overview";
         const headOverview = document.createElement('h3');
-        headOverview.textContent = "OVERVIEW:";
+        headOverview.textContent = textOverview;
         const pOverview = document.createElement('p');
         pOverview.textContent = overview;
 
