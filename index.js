@@ -102,7 +102,8 @@ const createUI = (data, search) => {
     // check if a searchbox has a value or not
     // first rendering case, radio change event case, search value is empty case 
     if (search !== undefined && typeof search === 'string' && search !== "") {
-        movieItems = checkedFilter.filter((item) => item.title.toLowerCase().includes(search.toLowerCase()));
+        movieItems = checkedFilter.filter((item) => 
+        item.title.toLowerCase().replace(/\s+/g,'').includes(search.toLowerCase().replace(/\s+/g,'')));
     } else {
         movieItems = checkedFilter;
     }
@@ -126,72 +127,83 @@ const createUI = (data, search) => {
     headMoviesTotal.textContent = moviesTotal + ' Movies';
     total.appendChild(headMoviesTotal);
 
-        movieItems.forEach(({ title, poster_path, backdrop_path, media_type, release_date, popularity, vote_average, vote_count, overview, genre_ids, rank }) => {
+    movieItems.forEach(({ title, poster_path, release_date, vote_average, vote_count, overview, genre_ids, rank }) => {
 
-            // calculating
-            const roundVoteAverage = ((Math.round(vote_average * 10)) / 10).toFixed(1);
+        // calculating
+        const roundVoteAverage = ((Math.round(vote_average * 10)) / 10).toFixed(1);
 
-            // make an article tag for each movie
-            const article = document.createElement('article');
-            article.className = 'item';
-            const img = document.createElement('img');
-            img.src = imagePath + poster_path;
-            // detail of the movie
-            const itemDetail = document.createElement('div');
-            itemDetail.className = 'item-detail';
-            const titleItem = document.createElement('h3');
-            titleItem.textContent = title;
-            const releaseDate = document.createElement('h4');
-            releaseDate.textContent = release_date;
+        // make an article tag for each movie
+        const article = document.createElement('article');
+        article.className = 'item';
 
-            // evaluations
-            const divCollection = document.createElement('div');
-            divCollection.className = 'collected-data';
+        // make discription that is hidden
+        const divOverview = document.createElement('div');
+        divOverview.className = "overview";
+        const headOverview = document.createElement('h3');
+        headOverview.textContent = "OVERVIEW:";
+        const pOverview = document.createElement('p');
+        pOverview.textContent = overview;
 
-            // popularity part
-            const divPopularity = document.createElement('div');
-            divPopularity.className = 'collected';
-            const iconPopularity = document.createElement('i');
-            iconPopularity.setAttribute('class', 'fa-solid fa-arrow-trend-up');
-            const spanPopularity = document.createElement('span');
-            spanPopularity.textContent = rank;
+        const img = document.createElement('img');
+        img.src = imagePath + poster_path;
+        // detail of the movie
+        const itemDetail = document.createElement('div');
+        itemDetail.className = 'item-detail';
+        const titleItem = document.createElement('h3');
+        titleItem.textContent = title;
+        const releaseDate = document.createElement('h4');
+        releaseDate.textContent = release_date;
 
-            // number vote part
-            const divNumberVote = document.createElement('div');
-            divNumberVote.className = 'collected';
-            const iconNumberVote = document.createElement('i');
-            iconNumberVote.setAttribute('class', 'fa-regular fa-hand');
-            const spanNumberVote = document.createElement('span');
-            spanNumberVote.textContent = vote_count;
+        // evaluations
+        const divCollection = document.createElement('div');
+        divCollection.className = 'collected-data';
 
-            // average vote part
-            const divAverageVote = document.createElement('div');
-            divAverageVote.className = 'collected';
-            const iconAverageVote = document.createElement('i');
-            iconAverageVote.setAttribute('class', 'fa-solid fa-star');
-            const spanAverageVote = document.createElement('span');
-            spanAverageVote.textContent = roundVoteAverage;
+        // popularity part
+        const divPopularity = document.createElement('div');
+        divPopularity.className = 'collected';
+        const iconPopularity = document.createElement('i');
+        iconPopularity.setAttribute('class', 'fa-solid fa-arrow-trend-up');
+        const spanPopularity = document.createElement('span');
+        spanPopularity.textContent = rank;
 
-            // genres part
-            const divGenre = document.createElement('div');
-            divGenre.className = 'item-genres';
+        // number vote part
+        const divNumberVote = document.createElement('div');
+        divNumberVote.className = 'collected';
+        const iconNumberVote = document.createElement('i');
+        iconNumberVote.setAttribute('class', 'fa-regular fa-hand');
+        const spanNumberVote = document.createElement('span');
+        spanNumberVote.textContent = vote_count;
 
-            // appending
-            movies.appendChild(article);
-            article.appendChild(img);
-            article.appendChild(itemDetail);
-            itemDetail.appendChild(titleItem);
-            itemDetail.appendChild(releaseDate);
-            itemDetail.appendChild(divCollection);
-            divCollection.appendChild(divPopularity);
-            divPopularity.append(iconPopularity, spanPopularity);
-            divCollection.appendChild(divNumberVote);
-            divNumberVote.append(iconNumberVote, spanNumberVote);
-            divCollection.appendChild(divAverageVote);
-            divAverageVote.append(iconAverageVote, spanAverageVote);
-            itemDetail.appendChild(divGenre);
-            showGenre(genre_ids, divGenre);
-        });
+        // average vote part
+        const divAverageVote = document.createElement('div');
+        divAverageVote.className = 'collected';
+        const iconAverageVote = document.createElement('i');
+        iconAverageVote.setAttribute('class', 'fa-solid fa-star');
+        const spanAverageVote = document.createElement('span');
+        spanAverageVote.textContent = roundVoteAverage;
+
+        // genres part
+        const divGenre = document.createElement('div');
+        divGenre.className = 'item-genres';
+
+        // appending
+        movies.appendChild(article);
+        article.appendChild(divOverview);
+        divOverview.append(headOverview, pOverview);
+        article.appendChild(img);
+        article.appendChild(itemDetail);
+        itemDetail.appendChild(titleItem);
+        itemDetail.appendChild(releaseDate);
+        itemDetail.appendChild(divCollection);
+        divCollection.appendChild(divPopularity);
+        divPopularity.append(iconPopularity, spanPopularity);
+        divCollection.appendChild(divNumberVote);
+        divNumberVote.append(iconNumberVote, spanNumberVote);
+        divCollection.appendChild(divAverageVote);
+        divAverageVote.append(iconAverageVote, spanAverageVote);
+        itemDetail.appendChild(divGenre);
+        showGenre(genre_ids, divGenre);
+    });
 }
 /* -------------------- sort data in the selected order --------------------  */
 const sortData = (array, type, order) => {

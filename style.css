@@ -22,15 +22,6 @@
      grid-template-rows: 15vh 85vh;
  }
 
- ul li {
-     list-style: none;
- }
-
- ul li a {
-     text-decoration: none;
-     color: var(--white);
- }
-
  /* -------------------- header --------------------  */
  #header {
      background-color: var(--secondary-bg-color);
@@ -41,12 +32,12 @@
  }
 
  .header-left {
-    min-width: max-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0rem 1rem;
-    color: var(--white);
+     min-width: max-content;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     padding: 0rem 1rem;
+     color: var(--white);
  }
 
  .search-container {
@@ -76,7 +67,7 @@
      display: none;
  }
 
- input[type="radio"]:checked + label {
+ input[type="radio"]:checked+label {
      color: var(--secondary-bg-color);
      background: var(--white);
      border: 1.5px solid var(--white);
@@ -111,10 +102,6 @@
      flex-wrap: wrap;
      gap: 0.4rem 0.25rem;
  }
-
- /* label {
-     margin-right: 1rem;
- } */
 
  label input {
      display: none;
@@ -155,18 +142,33 @@
  }
 
  .aside-items ul li {
-     margin-top: 1rem;
+     padding: 1rem 0;
      padding-left: 1.5rem;
+     list-style: none;
+     cursor: pointer;
  }
 
  .aside-items ul li i {
      margin-right: 1rem;
  }
 
+ .aside-items ul li a {
+     text-decoration: none;
+     color: var(--white);
+ }
+
+ .aside-items ul li:hover {
+     background-color: var(--white);
+ }
+
+ .aside-items ul li:hover a {
+     color: var(--primary-bg-color);
+ }
+
  /* -------------------- total --------------------  */
  #total h2 {
-    margin-top: 0.8rem;
-    margin-left: 1rem;
+     margin-top: 0.8rem;
+     margin-left: 1rem;
  }
 
  /* -------------------- main --------------------  */
@@ -187,12 +189,31 @@
  }
 
  .item {
+     position: relative;
      width: 380px;
-     border: 2px solid gray;
+     border: 2px solid rgba(38, 38, 40, 0.8);
      margin: 0.8rem;
      padding: 1rem 0.7rem;
      display: grid;
      grid-template-columns: 45% 55%;
+     cursor: pointer;
+ }
+
+ .item:hover .overview {
+     visibility: visible;
+     opacity: 1;
+     background: rgba(38, 38, 40, 0.8);
+ }
+
+ .overview {
+     position: absolute;
+     visibility: hidden;
+     opacity: 0;
+     height: 100%;
+     padding: 0.5rem 1rem;
+     color: var(--white);
+     overflow-x: scroll;
+     transition: 1.5s;
  }
 
  .item-detail h3 {
